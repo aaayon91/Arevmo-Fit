@@ -1,0 +1,21 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* background-color: transparent; */
+}
+
+.navButton {
+    width: 55px;
+    height: 55px;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+}
+
+/* #searchBtn {
+
+} */
