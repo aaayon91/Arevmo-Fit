@@ -6,6 +6,7 @@ import WorkoutsPage from '../WorkoutsPage/WorkoutsPage';
 import NavBar from '../../components/NavBar/NavBar';
 import Footer from '../../components/Footer/Footer';
 import{ getUser } from '../../utilities/users-service'
+import QrScanPage from '../QrScanPage/QrScanPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser()) 
@@ -17,6 +18,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser}/>
           <Routes>
             <Route path="/workouts" element={<WorkoutsPage />} />
+            <Route path="/qr" element={<QrScanPage />} />
           </Routes>
           <Footer />
         </>
