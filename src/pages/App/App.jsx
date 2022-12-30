@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import AuthPage from '../AuthPage/AuthPage';
 import WorkoutsPage from '../WorkoutsPage/WorkoutsPage';
 import NavBar from '../../components/NavBar/NavBar';
@@ -19,6 +19,7 @@ export default function App() {
           <Routes>
             <Route path="/workouts" element={<WorkoutsPage />} />
             <Route path="/qr" element={<QrScanPage />} />
+            <Route path="/*" element={<Navigate to="/qr" />} />
           </Routes>
           <Footer />
         </>
