@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-scanner';
+import { useNavigate } from 'react-router-dom';
 
-export default class Test extends Component {
+class QrScanner extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -13,9 +14,10 @@ export default class Test extends Component {
   }
   handleScan(data){
     if (data) {
-      this.setState({
-        result: data.text,
-      })
+      this.props.navigate('/exercise',{state:{exerciseUrl: data.text}});
+      // this.setState({
+      //   result: data.text,
+      // })
     } 
   }
   handleError(err){
@@ -40,3 +42,10 @@ export default class Test extends Component {
     )
   }
 }
+
+export function QrScannerWithRouter(props) {
+  const navigate = useNavigate();
+  return (<QrScanner navigate={navigate}/>)
+}
+
+export default QrScanner
