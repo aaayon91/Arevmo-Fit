@@ -3,9 +3,10 @@ import * as userService from '../../utilities/users-service'
 import "./NavBar.css"
 import {IoSettingsOutline} from 'react-icons/io5'
 import {CgSearch} from 'react-icons/cg'
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar({ user, setUser }) {
-    
+    const navigate = useNavigate()
     function handleLogOut() {
         // Delegate to users-service
         userService.logOut()
@@ -14,7 +15,7 @@ export default function NavBar({ user, setUser }) {
     return(
         <nav>
             {/* <button className="navButton" id="settingsBtn">SETTINGS</button> */}
-            <IoSettingsOutline className="navButton" id="settingsBtn"/>
+            <IoSettingsOutline className="navButton" id="settingsBtn" onClick={() => navigate('/settings')} />
             <CgSearch className="navButton"/>
             {/* <button className="navButton" id="searchBtn">SEARCH</button> */}
             {/* <Link to="/orders">Order History</Link>
