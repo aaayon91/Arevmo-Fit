@@ -1,6 +1,6 @@
 import {useLocation} from 'react-router-dom';
 
-export default function ExerciseShowPage() {
+export default function ExerciseShowPage({user}) {
     const location = useLocation();
 
     return (

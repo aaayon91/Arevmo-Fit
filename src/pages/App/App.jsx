@@ -8,6 +8,7 @@ import Footer from '../../components/Footer/Footer';
 import{ getUser } from '../../utilities/users-service'
 import QrScanPage from '../QrScanPage/QrScanPage';
 import ExerciseShowPage from '../ExerciseShowPage/ExerciseShowPage';
+import NewExercisePage from '../NewExercisePage/NewExercisePage';
 
 export default function App() {
   const [user, setUser] = useState(getUser()) 
@@ -18,10 +19,20 @@ export default function App() {
         <>
           <NavBar user={user} setUser={setUser}/>
           <Routes>
-            <Route path="/workouts" element={<WorkoutsPage />} />
-            <Route path="/qr" element={<QrScanPage />} />
-            <Route path="/exercise" element={<ExerciseShowPage />} />
-            <Route path="/*" element={<Navigate to="/qr" />} />
+            {
+              user.email === 'admin@admin' ?
+              <>
+                <Route path="/exercises/new" element={<NewExercisePage user={user} />} />
+                <Route path="/*" element={<Navigate to="/exercises/new" />} />
+              </>
+              :
+              <>
+                <Route path="/workouts" element={<WorkoutsPage />} />
+                <Route path="/qr" element={<QrScanPage />} />
+                <Route path="/exercises" element={<ExerciseShowPage user={user}/>} />
+                <Route path="/*" element={<Navigate to="/qr" />} />
+              </>
+            }
           </Routes>
           <Footer />
         </>

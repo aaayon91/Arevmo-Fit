@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
 import QrReader from 'react-qr-scanner';
 import { useNavigate } from 'react-router-dom';
+import{ getUser } from '../../utilities/users-service'
 
 class QrScanner extends Component {
   constructor(props){
@@ -9,12 +10,16 @@ class QrScanner extends Component {
       delay: 100,
       result: 'No result',
     }
-
+    
     this.handleScan = this.handleScan.bind(this)
   }
   handleScan(data){
     if (data) {
-      this.props.navigate('/exercise',{state:{exerciseUrl: data.text}});
+      if (this.props.user.email === 'admin@admin') {
+      this.props.content.qrCode = data.text
+      this.props.setScanner(!this.props.scanner)
+      } else
+      this.props.navigate('/exercises',{state:{exerciseUrl: data.text}});
       // this.setState({
       //   result: data.text,
       // })
@@ -43,9 +48,9 @@ class QrScanner extends Component {
   }
 }
 
-export function QrScannerWithRouter(props) {
+export function QrScannerWithRouter({user, content, setContent, scanner, setScanner}) {
   const navigate = useNavigate();
-  return (<QrScanner navigate={navigate}/>)
+  return (<QrScanner navigate={navigate} user={user} content={content} setContent={setContent} scanner={scanner} setScanner={setScanner}/>)
 }
 
 export default QrScanner
