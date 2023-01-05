@@ -15,11 +15,11 @@ class QrScanner extends Component {
   }
   handleScan(data){
     if (data) {
-      if (this.props.user.email === 'admin@admin') {
-      this.props.content.qrCode = data.text
-      this.props.setScanner(!this.props.scanner)
-      } else
-      this.props.navigate('/exercises',{state:{exerciseUrl: data.text}});
+      let qrCode = data.text
+      // if (this.props.user.email === 'admin@admin') {
+        this.props.setQrCode(qrCode);
+        this.props.getExercise(qrCode)
+      // } else this.props.navigate('/exercises',{state:{exerciseUrl: data.text}});
       // this.setState({
       //   result: data.text,
       // })
@@ -48,9 +48,16 @@ class QrScanner extends Component {
   }
 }
 
-export function QrScannerWithRouter({user, content, setContent, scanner, setScanner}) {
+export function QrScannerWithRouter({user, setQrCode, getExercise}) {
   const navigate = useNavigate();
-  return (<QrScanner navigate={navigate} user={user} content={content} setContent={setContent} scanner={scanner} setScanner={setScanner}/>)
+  return (
+    <QrScanner 
+      navigate={navigate} 
+      user={user} 
+      setQrCode={setQrCode}
+      getExercise={getExercise}
+    />
+  )
 }
 
 export default QrScanner
