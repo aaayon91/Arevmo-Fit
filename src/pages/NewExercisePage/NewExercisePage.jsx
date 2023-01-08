@@ -1,60 +1,46 @@
 import { useState } from 'react';
-import QrScannerWithRouter from '../../components/QrScanner/QrScanner';
+import { useLocation } from 'react-router-dom';
+import * as exercisesAPI from '../../utilities/exercises-api';
 
 export default function NewExercisePage({user}) {
+    const location = useLocation();
+    const qrCode = location.state.qrCode;
     const [content, setContent] = useState({
         name: '',
         muscleGroup: '',
-        qrCode: ''
+        qrCode: qrCode
     })
-    const [scanner, setScanner] = useState(false);
 
     function handleChange(evt) {
         setContent({...content, [evt.target.name]: evt.target.value });  
     }
-
-    function handleScanQR() {
-        setScanner(!scanner)
-    }
         
     async function handleSubmit(evt) {
-        // evt.preventDefault();
-        // let ok = true;
-        // for (const key in content) {
-        //     if (content[key] === '') {
-        //     ok = false;
-        //     } 
-        // }
-        // if (ok) {
-        //     // await handleAddBoard(content)
-        //     // navigate('/boards')
-        // }
+        evt.preventDefault();
+        let exercise = null;
+        if (Object.values(content).every(e => !!e === true)) {
+            exercise = await exercisesAPI.add(content)
+        }
+        if (exercise) {
+            setContent({
+                name: '',
+                muscleGroup: '',
+                qrCode: qrCode
+            })
+        }
     }
 
     return (
-        <>
-        {
-            scanner ?
-            // <QrScanner user={user}/>
-            <QrScannerWithRouter user={user} content={content} setContent={setContent} scanner={scanner} setScanner={setScanner}/>
-            :
-            <div className="form-container">
+        <div className="form-container">
             <form>
                 <label>Name:</label>
                     <input type="text" name="name" value={content.name} onChange={handleChange} />
                 <label>Muscle Group:</label>
                     <input type="text" name="muscleGroup" value={content.muscleGroup} onChange={handleChange} />
                 <label>QR Code:</label>
-                    {
-                        content.qrCode ?
-                            <input type="text" name="qrCode" value={content.qrCode} onChange={handleChange} />
-                        :
-                            <button onClick={handleScanQR}>SCAN</button>
-                    }
+                    <input type="text" name="qrCode" value={qrCode} onChange={handleChange} disabled="disabled"></input>
                 <button type="submit" onClick={handleSubmit}>CREATE</button>
             </form>
         </div>
-        }
-        </>
     )
 }

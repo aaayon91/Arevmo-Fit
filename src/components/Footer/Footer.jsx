@@ -5,13 +5,22 @@ import {IoBarbell} from 'react-icons/io5';
 import { useNavigate } from "react-router-dom";
 
 
-export default function Footer() {
+export default function Footer({user}) {
     const navigate = useNavigate()
     return (
         <footer>
-            <CgProfile className="footerButton"/>
-            <BiQrScan className="footerButton" onClick={() => navigate('/qr')} />
-            <IoBarbell className="footerButton" onClick={() => navigate('/workouts')} />
+            {
+                user.email === "admin@admin" ?
+                    <>
+                        <BiQrScan className="footerButton" onClick={() => navigate('/qr')} />
+                    </>
+                :
+                    <>
+                        <CgProfile className="footerButton"/>
+                        <BiQrScan className="footerButton" onClick={() => navigate('/qr')} />
+                        <IoBarbell className="footerButton" onClick={() => navigate('/workouts')} />
+                    </>
+            }
         </footer>
     )
 }

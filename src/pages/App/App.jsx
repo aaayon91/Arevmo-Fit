@@ -8,6 +8,7 @@ import Footer from '../../components/Footer/Footer';
 import{ getUser } from '../../utilities/users-service'
 import QrScanPage from '../QrScanPage/QrScanPage';
 import ExerciseShowPage from '../ExerciseShowPage/ExerciseShowPage';
+import UserExerciseShowPage from '../UserExerciseShowPage/UserExerciseShowPage';
 import NewExercisePage from '../NewExercisePage/NewExercisePage';
 import SettingsPage from '../SettingsPage/SettingsPage';
 
@@ -23,20 +24,22 @@ export default function App() {
             {
               user.email === 'admin@admin' ?
               <>
+                <Route path="/qr" element={<QrScanPage user={user}/>} />
                 <Route path="/exercises/new" element={<NewExercisePage user={user} />} />
-                <Route path="/*" element={<Navigate to="/exercises/new" />} />
+                <Route path="/exercises/:exerciseId" element={<ExerciseShowPage user={user} />} />
+                <Route path="/*" element={<Navigate to="/qr" />} />
               </>
               :
               <>
                 <Route path="/workouts" element={<WorkoutsPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/qr" element={<QrScanPage />} />
-                <Route path="/exercises" element={<ExerciseShowPage user={user}/>} />
+                <Route path="/qr" element={<QrScanPage user={user}/>} />
+                <Route path="/exercises/:exerciseId" element={<UserExerciseShowPage user={user}/>} />
                 <Route path="/*" element={<Navigate to="/qr" />} />
               </>
             }
           </Routes>
-          <Footer />
+          <Footer user={user}/>
         </>
         :
         <AuthPage setUser={setUser} /> 
