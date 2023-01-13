@@ -16,7 +16,7 @@ export default function Footer({user}) {
                     </>
                 :
                     <>
-                        <CgProfile className="footerButton"/>
+                        <CgProfile className="footerButton"onClick={() => navigate('/profile')} />
                         <BiQrScan className="footerButton" onClick={() => navigate('/qr')} />
                         <IoBarbell className="footerButton" onClick={() => navigate('/workouts')} />
                     </>
