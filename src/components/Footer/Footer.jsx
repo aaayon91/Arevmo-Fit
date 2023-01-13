@@ -9,7 +9,7 @@ export default function Footer() {
     const navigate = useNavigate()
     return (
         <footer>
-            <CgProfile className="footerButton"/>
+            <CgProfile className="footerButton" onClick={() => navigate('/profile')} />
             <BiQrScan className="footerButton" onClick={() => navigate('/qr')} />
             <IoBarbell className="footerButton" onClick={() => navigate('/workouts')} />
         </footer>

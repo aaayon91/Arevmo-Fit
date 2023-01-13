@@ -10,6 +10,7 @@ import QrScanPage from '../QrScanPage/QrScanPage';
 import ExerciseShowPage from '../ExerciseShowPage/ExerciseShowPage';
 import NewExercisePage from '../NewExercisePage/NewExercisePage';
 import SettingsPage from '../SettingsPage/SettingsPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 
 export default function App() {
   const [user, setUser] = useState(getUser()) 
@@ -30,6 +31,7 @@ export default function App() {
               <>
                 <Route path="/workouts" element={<WorkoutsPage />} />
                 <Route path="/settings" element={<SettingsPage />} />
+                <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />} />
                 <Route path="/qr" element={<QrScanPage />} />
                 <Route path="/exercises" element={<ExerciseShowPage user={user}/>} />
                 <Route path="/*" element={<Navigate to="/qr" />} />
