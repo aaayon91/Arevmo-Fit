@@ -22,7 +22,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser}/>
           <Routes>
             {
-              user.email === 'admin@admin' ?
+              user.isAdmin === true ?
               <>
                 <Route path="/qr" element={<QrScanPage user={user}/>} />
                 <Route path="/exercises/new" element={<NewExercisePage user={user} />} />
