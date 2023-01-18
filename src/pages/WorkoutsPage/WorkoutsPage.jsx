@@ -10,6 +10,7 @@ export default function WorkoutsPage() {
     //     usersApi.addSet({weight: weight, reps: 10})
     //     setWeight(weight + 10)
     // }
+    // Includes embedded video
     return (
         <>
             <h1>Workouts Page!!!</h1>
