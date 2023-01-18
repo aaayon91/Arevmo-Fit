@@ -16,7 +16,7 @@ class QrScanner extends Component {
   handleScan(data){
     if (data) {
       let qrCode = data.text
-      // if (this.props.user.email === 'admin@admin') {
+      // if (this.props.user.isAdmin === true) {
         this.props.setQrCode(qrCode);
         this.props.getExercise(qrCode)
       // } else this.props.navigate('/exercises',{state:{exerciseUrl: data.text}});

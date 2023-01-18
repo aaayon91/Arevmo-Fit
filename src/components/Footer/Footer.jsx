@@ -10,7 +10,7 @@ export default function Footer({user}) {
     return (
         <footer>
             {
-                user.email === "admin@admin" ?
+                user.isAdmin === true ?
                     <>
                         <BiQrScan className="footerButton" onClick={() => navigate('/qr')} />
                     </>

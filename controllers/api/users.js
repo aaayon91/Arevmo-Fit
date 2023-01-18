@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt')
 module.exports = {
     create, 
     login, 
-    checkToken
+    checkToken,
+    // addSet
 }
 
 async function create(req, res) {
@@ -50,4 +51,12 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: '24h' }
     )
+}
+
+async function addSet(req, res) {
+    console.log(req.body)
+    // console.log(req.user)
+    // const user = await User.findOne({ email: req.user.email })
+    // user.sets.push(req.body)
+    // await user.save()
 }

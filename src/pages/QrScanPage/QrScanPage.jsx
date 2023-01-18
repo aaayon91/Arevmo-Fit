@@ -20,7 +20,7 @@ export default function QrScanPage({user}) {
         if (exercises[qrCode]) {
             navigate(`/exercises/${exercises[qrCode]['_id']}`)
         } else {
-            if (user.email === 'admin@admin') {
+            if (user.isAdmin === true) {
                 navigate('/exercises/new', {state:{qrCode: qrCode}})
             }
         }

@@ -18,7 +18,13 @@ const userSchema = new Schema({
     trim: true,
     minLength: 3,
     required: true
-  }
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+    required: true
+  },
+  // sets: []
 }, {
     timestamps: true,
     //Even though it's hashed -- dont serialize the password
