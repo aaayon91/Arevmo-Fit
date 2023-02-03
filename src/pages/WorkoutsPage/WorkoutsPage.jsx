@@ -1,11 +1,12 @@
 import Footer from "../../components/Footer/Footer";
-import * as usersApi from "../../utilities/users-api"
+import * as sessionsApi from "../../utilities/sessions-api"
 import { useState } from "react";
 
 
 export default function WorkoutsPage() {
     const [weight, setWeight] = useState(50)
-    
+    // regergeragrwgrw
+    // argregrgrwgwrg
     // function handleClick() {
     //     usersApi.addSet({weight: weight, reps: 10})
     //     setWeight(weight + 10)
