@@ -6,6 +6,7 @@ module.exports = {
     create, 
     login, 
     checkToken,
+    updateUser,
     // addSet
 }
 
@@ -41,8 +42,14 @@ function checkToken(req, res) {
     // req.user will always be there for you when a token is sent
     console.log('req.user', req.user);
     res.json(req.exp);
-  }
+}
 
+async function updateUser(req, res) {
+    let user = await User.findOne({'id': req.body._id});
+    Object.entries(req.body).forEach(el => user[el[0]] = el[1]);
+    await user.save();
+    res.json(user);
+}
 /*-- Helper Function --*/
 function createJWT(user) {
     return jwt.sign(

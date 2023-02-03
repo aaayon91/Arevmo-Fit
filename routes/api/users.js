@@ -8,5 +8,5 @@ router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login)
 // router.post('/set', usersCtrl.addSet)
 router.get('/check-token', usersCtrl.checkToken) 
-
+router.put('/update', usersCtrl.updateUser)
 module.exports = router;
