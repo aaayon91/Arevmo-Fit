@@ -1,5 +1,5 @@
 import Footer from "../../components/Footer/Footer";
-import * as usersApi from "../../utilities/users-api"
+import * as sessionsApi from "../../utilities/sessions-api"
 import { useState } from "react";
 
 
