@@ -25,6 +25,14 @@ const userSchema = new Schema({
     default: false,
     required: true
   },
+  height: {
+    type: String,
+    default: ''
+  },
+  weight: {
+    type: Number,
+    default: 0
+  },
   exerciseData: {
     type: Map,
     of:[ sessionSchema ]
