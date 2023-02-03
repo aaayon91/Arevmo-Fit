@@ -1,10 +1,10 @@
-import userEvent from "@testing-library/user-event";
+import ProfileForm from "../../components/ProfileForm/ProfileForm";
 
 export default function ProfilePage({ user, setUser }) {
-    return (
-        <>
-            <h1>Welcome, {user.name} </h1>
-            <iframe src="" title=""></iframe> 
-        </>
-    )
+
+  return (
+    <>
+      <ProfileForm user={user} setUser={setUser} />
+    </>
+  )
 }

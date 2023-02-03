@@ -12,6 +12,7 @@ import UserExerciseShowPage from '../UserExerciseShowPage/UserExerciseShowPage';
 import NewExercisePage from '../NewExercisePage/NewExercisePage';
 import SettingsPage from '../SettingsPage/SettingsPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import InitUserPage from '../InitUserPage/InitUserPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser()) 
@@ -31,14 +32,20 @@ export default function App() {
                 <Route path="/*" element={<Navigate to="/qr" />} />
               </>
               :
-              <>
-                <Route path="/workouts" element={<WorkoutsPage />} />
-                <Route path="/profile" element={<ProfilePage user={user} />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/qr" element={<QrScanPage user={user}/>} />
-                <Route path="/exercises/:exerciseId" element={<UserExerciseShowPage user={user}/>} />
-                <Route path="/*" element={<Navigate to="/qr" />} />
-              </>
+            
+              user.height ?
+                <>
+                  <Route path="/updateuser" element={<InitUserPage user={user} setUser={setUser}/>} />
+                </>
+                :
+                <>
+                  <Route path="/workouts" element={<WorkoutsPage />} />
+                  <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="/qr" element={<QrScanPage user={user}/>} />
+                  <Route path="/exercises/:exerciseId" element={<UserExerciseShowPage user={user}/>} />
+                  <Route path="/*" element={<Navigate to="/qr" />} />
+                </>
             }
           </Routes>
           <Footer user={user}/>

@@ -14,8 +14,16 @@ export function login(credentials) {
 //     return sendRequest(`${BASE_URL}/set`, 'POST', setData);
 // }
 
+export function getUser(userId) {
+    return sendRequest(`${BASE_URL}/${userId}`)
+}
+
 export function checkToken() {
     return sendRequest(`${BASE_URL}/check-token`);
+}
+
+export function updateUser (userData) {
+    return sendRequest(`${BASE_URL}/update`, 'PUT', userData)
 }
 
 /*--- Helper Functions ---*/
