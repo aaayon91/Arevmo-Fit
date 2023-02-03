@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt')
+const sessionSchema = require('./session').schema
 
 const SALT_ROUNDS = 6 //6 is a reasonable value(hash) 
 
@@ -24,7 +25,10 @@ const userSchema = new Schema({
     default: false,
     required: true
   },
-  // sets: []
+  exerciseData: {
+    type: Map,
+    of:[ sessionSchema ]
+  }
 }, {
     timestamps: true,
     //Even though it's hashed -- dont serialize the password
